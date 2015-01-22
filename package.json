@@ -1,0 +1,19 @@
+{
+  "name": "platypus",
+  "version": "0.0.0",
+  "description": "Web app that reports next trains to both Burgess Hill train stations",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/automonkey/platypus"
+  },
+  "author": "Will Benyon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/automonkey/platypus/issues"
+  },
+  "homepage": "https://github.com/automonkey/platypus"
+}
