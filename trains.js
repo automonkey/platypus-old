@@ -1,12 +1,5 @@
 var http = require('http');
-
-var testData =
-{ 'BUG':
-  {
-    'time': '16:30',
-    'platform': '16'
-  }
-};
+var parser = require('./parse.js');
 
 var stationResultsUrl = function() {
   return process.env.TRAIN_LOOKUP_BASE_URL + '/VIC/BUG';
@@ -20,7 +13,10 @@ var getTrains = function(callback) {
       data.push(d);
     });
     res.on('end', function() {
-      callback(testData);
+      var response =
+        { 'Burgess Hill' :
+          parser.parse(data.join('')) };
+      callback(response);
     });
   }).on('error', function(e) {
     console.log('Got error: ' + e.message);
