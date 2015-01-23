@@ -1,7 +1,7 @@
 var express = require("express");
 var logfmt = require("logfmt");
 var app = express();
-var trains = require('./trains.js');
+var trains = require('./lib/trains.js');
 
 app.use(logfmt.requestLogger());
 
