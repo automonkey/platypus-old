@@ -1,7 +1,7 @@
 var cheerio = require('cheerio');
 
 var parseHtml = function(data) {
-  var results = {results : []};
+  var results = [];
 
   var $ = cheerio.load(data);
   var resultsDom = $('ul.results');
@@ -27,7 +27,7 @@ var parseHtml = function(data) {
       platform = platformInfo.replace(/\w+\s+/, '');
     }
 
-    results['results'].push(
+    results.push(
       { 'time': journeyStartTime,
         'platform': platform });
   }

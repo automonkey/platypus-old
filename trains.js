@@ -14,7 +14,7 @@ var getTrainsForStation = function(station, trains, taskComplete) {
       data.push(d);
     });
     res.on('end', function() {
-      trains[station] = parser.parse(data.join(''));
+      trains.results = parser.parse(data.join(''));
       taskComplete();
     });
   }).on('error', function(e) {
@@ -24,17 +24,27 @@ var getTrainsForStation = function(station, trains, taskComplete) {
 };
 
 var getTrains = function(callback) {
-  var trains = {};
+  var bugTrains = {results: []};
+  var wvfTrains = {results: []};
   async.parallel([
     function(taskCompleteCallback) {
-      getTrainsForStation('BUG', trains, taskCompleteCallback);
+      getTrainsForStation('BUG', bugTrains, taskCompleteCallback);
     },
     function(taskCompleteCallback) {
-      getTrainsForStation('WVF', trains, taskCompleteCallback);
+      getTrainsForStation('WVF', wvfTrains, taskCompleteCallback);
     }
   ], function(err) {
     if(err) return next(err);
-    callback(trains);
+
+    var results = [
+      {
+        'WVF': wvfTrains.results
+      },
+      {
+        'BUG': bugTrains.results
+      }
+    ];
+    callback(results);
   });
 };
 
