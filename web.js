@@ -1,11 +1,14 @@
 var express = require("express");
 var logfmt = require("logfmt");
 var app = express();
+var trains = require('./trains.js');
 
 app.use(logfmt.requestLogger());
 
 app.get('/', function(req, res) {
-  res.send('Hello, trainseeker!');
+  trains.getTrains(function(results) {
+    res.send(results);
+  });
 });
 
 var port = Number(process.env.PORT || 5000);
