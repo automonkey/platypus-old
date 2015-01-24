@@ -1,0 +1,10 @@
+{{#each results}}
+<div>
+  <h1>{{stationName}}</h1>
+  {{#each trains}}
+  <div>
+    {{time}} (Platform {{platform}})
+  </div>
+  {{/each}}
+</div>
+{{/each}}
