@@ -1,0 +1,10 @@
+extend layout
+block content
+  each station in stations
+    h1 #{station.stationName}
+    ul
+      each train in station.trains
+        li
+          | #{train.time}
+          if train.platform
+            | (platform #{train.platform})
