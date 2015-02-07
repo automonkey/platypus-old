@@ -5,9 +5,11 @@ var trains = require('./lib/trains.js');
 
 app.use(logfmt.requestLogger());
 
+app.set('view engine', 'jade');
+
 app.get('/', function(req, res) {
   trains.getTrains(function(results) {
-    res.send(results);
+    res.render('results', results);
   });
 });
 
