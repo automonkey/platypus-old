@@ -7,9 +7,30 @@ app.use(logfmt.requestLogger());
 
 app.set('view engine', 'jade');
 
+function resultsResponseGenerator(req) {
+  switch(req.accepts(['html', 'json'])) {
+    case 'json':
+      return function(res, resultsJson) {
+        res.send(resultsJson);
+      };
+    case 'html':
+      return function(res, resultsJson) {
+        res.render('results', resultsJson);
+      };
+  }
+
+  return null;
+}
+
 app.get('/', function(req, res) {
-  trains.getTrains(function(results) {
-    res.render('results', results);
+  var responseGenerator = resultsResponseGenerator(req);
+  if(responseGenerator === null) {
+    res.sendStatus(406);
+    return;
+  }
+
+  trains.getTrains(function (resultsJson) {
+    responseGenerator(res, resultsJson);
   });
 });
 
