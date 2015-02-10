@@ -1,3 +1,4 @@
-node_modules/
+/public
 .anvil
+node_modules/
 
