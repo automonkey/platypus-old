@@ -23,7 +23,7 @@
     "gulp": "^3.8.0",
     "jade": "^1.9.2",
     "logfmt": "^1.2.0",
-    "node-sass-middleware": "^0.4.0"
+    "node-sass-middleware": "~0.3.1"
   },
   "engines": {
     "node": "0.10.x"
